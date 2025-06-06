@@ -8,9 +8,9 @@
     "apps/*"
   ],
   "scripts": {
-    "build:all": "bun run --filter='packages/*' build",
-    "dev:packages": "bun run --filter='packages/*' dev",
-    "type-check:all": "bun run --filter='*' type-check",
+    "build:all": "cd packages/rpc-core && bun run build && cd ../rpc-compiler && bun run build && cd ../rpc-dev-tools && bun run build",
+    "dev:packages": "cd packages/rpc-core && bun run dev & cd packages/rpc-compiler && bun run dev & cd packages/rpc-dev-tools && bun run dev",
+    "type-check:all": "cd packages/rpc-core && bun run type-check && cd ../rpc-compiler && bun run type-check && cd ../rpc-dev-tools && bun run type-check && cd ../../apps/sample-app && bun run type-check",
     "test:all": "bun test",
     "dev": "cd apps/sample-app && bun run dev",
     "clean": "rm -rf packages/*/dist apps/*/dist"

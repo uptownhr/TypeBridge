@@ -274,6 +274,72 @@ bun run clean
 - Advanced types: `BigInt`, `RegExp`
 - Custom serializable classes
 
+### File Uploads - Limitation & Recommended Solution
+
+**Current Limitation:** TypeBridge Form component doesn't automatically handle file uploads through RPC calls, as files cannot be JSON serialized across the network boundary.
+
+**Recommended Solution:** Use dedicated file upload services for clean architecture:
+
+```typescript
+// Recommended approach using Uppy or Filestack
+import { Uppy } from '@uppy/core';
+import { createUser } from '../../server/api/users';
+
+const uppy = new Uppy({
+  restrictions: { maxFileSize: 5000000 } // 5MB
+});
+
+export function UserForm() {
+  const [uploadedFileUrl, setUploadedFileUrl] = useState<string>('');
+
+  useEffect(() => {
+    uppy.on('upload-success', (file, response) => {
+      setUploadedFileUrl(response.uploadURL);
+    });
+  }, []);
+
+  return (
+    <Form action={createUser}>
+      <input name="name" />
+      <input name="email" />
+      <input 
+        name="avatarUrl" 
+        type="hidden" 
+        value={uploadedFileUrl} 
+      />
+      
+      {/* File upload handled separately */}
+      <div id="uppy-upload"></div>
+      
+      <button type="submit" disabled={!uploadedFileUrl}>
+        Create User
+      </button>
+    </Form>
+  );
+}
+
+// Server function receives clean URL
+export async function createUser(data: { 
+  name: string; 
+  email: string; 
+  avatarUrl: string; // Just a URL string
+}) {
+  return await db.createUser(data);
+}
+```
+
+**Why this approach works better:**
+- **Separation of concerns**: File handling separate from business logic
+- **Performance**: Files upload independently, no blocking RPC calls
+- **Reliability**: Dedicated services handle retries, chunking, progress
+- **Security**: Upload services handle validation, virus scanning
+- **Scalability**: CDN integration, global upload endpoints
+
+**Recommended Services:**
+- **[Uppy](https://uppy.io/)** - Open source, highly customizable
+- **[Filestack](https://www.filestack.com/)** - Commercial with advanced features  
+- **[Cloudinary](https://cloudinary.com/)** - Image/video focused with transformations
+
 ## Error Handling
 
 The system provides comprehensive error handling:
