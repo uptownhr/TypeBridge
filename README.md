@@ -10,6 +10,122 @@ A compile-time RPC system for TypeScript that allows seamless function calls bet
 
 TypeBridge transforms server imports into RPC calls at build time, eliminating boilerplate while preserving complete TypeScript type information across the client-server boundary.
 
+## Why TypeBridge?
+
+### vs tRPC
+
+**tRPC Server Definition:**
+```typescript
+// tRPC requires procedures and routers
+const userRouter = t.router({
+  getUser: t.procedure
+    .input(z.string())
+    .query(async ({ input }) => {
+      return await db.findUser(input);
+    }),
+  
+  createUser: t.procedure
+    .input(z.object({ name: z.string(), email: z.string() }))
+    .mutation(async ({ input }) => {
+      return await db.createUser(input);
+    })
+});
+
+export const appRouter = t.router({
+  user: userRouter,
+});
+```
+
+**tRPC Client Usage:**
+```typescript
+// Complex API with hooks and query keys
+const user = trpc.user.getUser.useQuery('user-123');
+const createUserMutation = trpc.user.createUser.useMutation();
+```
+
+**TypeBridge Server Definition:**
+```typescript
+// Just regular TypeScript functions
+export async function getUser(id: string): Promise<User> {
+  return await db.findUser(id);
+}
+
+export async function createUser(userData: CreateUserData): Promise<User> {
+  return await db.createUser(userData);
+}
+```
+
+**TypeBridge Client Usage:**
+```typescript
+// Direct imports and function calls
+import { getUser, createUser } from '../../server/api/users';
+
+const user = await getUser('user-123');
+const newUser = await createUser({ name: 'John', email: 'john@example.com' });
+```
+
+### vs React Server Actions
+
+**React Server Actions Oddities:**
+
+```typescript
+// Server Action requires 'use server' directive
+async function createUser(formData: FormData) {
+  'use server';
+  
+  // Awkward FormData parsing
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string;
+  
+  return await db.createUser({ name, email });
+}
+
+// Client: Form-specific, limited to form submissions
+<form action={createUser}>
+  <input name="name" />
+  <input name="email" />
+  <button type="submit">Create</button>
+</form>
+
+// For non-form usage, needs binding
+const boundAction = createUser.bind(null, userData);
+```
+
+**TypeBridge Approach:**
+```typescript
+// Server: Regular function
+export async function createUser(userData: CreateUserData): Promise<User> {
+  return await db.createUser(userData);
+}
+
+// Client: Use anywhere, anytime
+import { createUser } from '../../server/api/users';
+
+// In forms
+const handleSubmit = async (e) => {
+  const user = await createUser({ name, email });
+};
+
+// In event handlers
+const handleClick = async () => {
+  const user = await createUser(userData);
+};
+
+// In useEffect
+useEffect(() => {
+  createUser(defaultData);
+}, []);
+```
+
+## Key Advantages
+
+- **🎯 Zero Learning Curve**: Write server functions, import them in client code - that's it
+- **⚡ Natural TypeScript**: No schemas, procedures, or directives - just functions
+- **🚀 Universal Usage**: Call server functions anywhere, not just forms or hooks
+- **📦 Minimal Overhead**: No runtime libraries, just optimized RPC calls
+- **🔧 Any Framework**: Works with React, Vue, Svelte, vanilla JS
+- **🎨 True Imports**: Real ES6 imports that your IDE understands completely
+
 ## Features
 
 - **Zero Ceremony**: Import server functions and call them like local functions
