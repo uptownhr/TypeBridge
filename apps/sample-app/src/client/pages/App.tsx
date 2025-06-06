@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { UserProfile } from '../components/UserProfile';
+import { UserList } from '../components/UserList';
 import { PostList } from '../components/PostList';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<'users' | 'posts'>('users');
-  const [selectedUserId, setSelectedUserId] = useState('user-1');
   
   return (
     <div className="container">
@@ -31,24 +30,7 @@ export function App() {
         </button>
       </div>
       
-      {activeTab === 'users' && (
-        <div>
-          <div style={{ marginBottom: '20px' }}>
-            <label>
-              View User Profile:
-              <select 
-                value={selectedUserId} 
-                onChange={(e) => setSelectedUserId(e.target.value)}
-                style={{ marginLeft: '10px', padding: '5px' }}
-              >
-                <option value="user-1">User 1 (John Doe)</option>
-                <option value="user-2">User 2 (Jane Smith)</option>
-              </select>
-            </label>
-          </div>
-          <UserProfile userId={selectedUserId} />
-        </div>
-      )}
+      {activeTab === 'users' && <UserList />}
       
       {activeTab === 'posts' && <PostList />}
       

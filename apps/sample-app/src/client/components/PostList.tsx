@@ -94,7 +94,7 @@ export function PostList() {
           <p><strong>Author:</strong> {selectedPost.author.name} ({selectedPost.author.email})</p>
           <p><strong>Created:</strong> {new Date(selectedPost.post.createdAt).toLocaleString()}</p>
           <p>{selectedPost.post.content} xfxfffggg</p>
-          <button onClick={() => setSelectedPost(null)}>Close</button>
+          <button onClick={() => setSelectedPost(null)}>Close x</button>
         </div>
       )}
       
