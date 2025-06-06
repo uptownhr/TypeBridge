@@ -1,0 +1,45 @@
+<svg width="300" height="80" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for TypeBridge text -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3178C6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4FC3F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3178C6;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Gradient for the brackets -->
+    <linearGradient id="bracketGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4FC3F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3178C6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Left bracket { -->
+  <text x="20" y="50"
+        font-family="Monaco, Menlo, 'Courier New', monospace"
+        font-size="48"
+        font-weight="bold"
+        fill="url(#bracketGradient)"
+        text-anchor="middle"
+        dominant-baseline="central">{</text>
+
+  <!-- TypeBridge text -->
+  <text x="150" y="50"
+        font-family="'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="32"
+        font-weight="700"
+        fill="url(#textGradient)"
+        text-anchor="middle"
+        dominant-baseline="central">TypeBridge</text>
+
+  <!-- Right bracket } -->
+  <text x="280" y="50"
+        font-family="Monaco, Menlo, 'Courier New', monospace"
+        font-size="48"
+        font-weight="bold"
+        fill="url(#bracketGradient)"
+        text-anchor="middle"
+        dominant-baseline="central">}</text>
+
+
+</svg>

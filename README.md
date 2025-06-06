@@ -1,4 +1,10 @@
+<div align="center">
+
+![TypeBridge Logo](./logo.svg)
+
 # TypeBridge
+
+</div>
 
 A compile-time RPC system for TypeScript that allows seamless function calls between client and server code with full type safety.
 
