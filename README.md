@@ -193,87 +193,6 @@ export function UserProfile({ userId }: { userId: string }) {
 - Hot reload when server functions change
 - No manual API routes or fetch calls needed
 
-## Project Structure
-
-```
-TypeBridge/
-├── packages/
-│   ├── rpc-core/           # Core RPC runtime & types
-│   ├── rpc-compiler/       # Build-time transformation
-│   └── rpc-dev-tools/      # Development utilities
-├── apps/
-│   └── sample-app/         # Example React application
-│       ├── src/
-│       │   ├── client/     # React frontend code
-│       │   │   ├── components/
-│       │   │   ├── pages/
-│       │   │   └── index.tsx
-│       │   ├── server/     # Backend API functions
-│       │   │   └── api/
-│       │   │       ├── users.ts
-│       │   │       └── posts.ts
-│       │   └── shared/     # Shared types & utilities
-│       │       └── types/
-│       ├── build/          # Development server scripts
-│       └── vite.config.ts  # Vite configuration
-├── package.json            # Root package.json for monorepo
-└── README.md
-```
-
-## Packages
-
-### @seamless-rpc/core
-
-Core runtime library providing:
-- RPC client for making function calls
-- RPC server for handling requests
-- Serialization/deserialization
-- Error handling and types
-
-### @seamless-rpc/compiler
-
-Build-time compiler providing:
-- Bun plugin for code transformation
-- TypeScript AST analysis
-- Client stub generation
-- Server route registration
-
-### @seamless-rpc/dev-tools
-
-Development utilities providing:
-- Development server with hot reload
-- RPC call logging and debugging
-- Performance monitoring
-
-## Development
-
-```bash
-# Install dependencies
-bun install
-
-# Build all packages in development mode
-bun run dev:packages
-
-# Run type checking across all packages
-bun run type-check:all
-
-# Clean all build artifacts
-bun run clean
-```
-
-## Supported Types
-
-### Phase 1 (Current)
-- Primitives: `string`, `number`, `boolean`, `null`
-- `Date` objects
-- Arrays and plain objects
-- Nested combinations of the above
-
-### Future Phases
-- Collections: `Map`, `Set`
-- Advanced types: `BigInt`, `RegExp`
-- Custom serializable classes
-
 ### File Uploads - Limitation & Recommended Solution
 
 **Current Limitation:** TypeBridge Form component doesn't automatically handle file uploads through RPC calls, as files cannot be JSON serialized across the network boundary.
@@ -355,6 +274,100 @@ try {
   }
 }
 ```
+
+## Supported Types
+
+### Phase 1 (Current)
+- Primitives: `string`, `number`, `boolean`, `null`
+- `Date` objects
+- Arrays and plain objects
+- Nested combinations of the above
+
+### Future Phases
+- Collections: `Map`, `Set`
+- Advanced types: `BigInt`, `RegExp`
+- Custom serializable classes
+
+## Project Structure
+
+```
+TypeBridge/
+├── packages/
+│   ├── rpc-core/           # Core RPC runtime & types
+│   ├── rpc-compiler/       # Build-time transformation
+│   └── rpc-dev-tools/      # Development utilities
+├── apps/
+│   └── sample-app/         # Example React application
+│       ├── src/
+│       │   ├── client/     # React frontend code
+│       │   │   ├── components/
+│       │   │   ├── pages/
+│       │   │   └── index.tsx
+│       │   ├── server/     # Backend API functions
+│       │   │   └── api/
+│       │   │       ├── users.ts
+│       │   │       └── posts.ts
+│       │   └── shared/     # Shared types & utilities
+│       │       └── types/
+│       ├── build/          # Development server scripts
+│       └── vite.config.ts  # Vite configuration
+├── package.json            # Root package.json for monorepo
+└── README.md
+```
+
+## Packages
+
+### @seamless-rpc/core
+
+Core runtime library providing:
+- RPC client for making function calls
+- RPC server for handling requests
+- Serialization/deserialization
+- Error handling and types
+
+### @seamless-rpc/compiler
+
+Build-time compiler providing:
+- Bun plugin for code transformation
+- TypeScript AST analysis
+- Client stub generation
+- Server route registration
+
+### @seamless-rpc/dev-tools
+
+Development utilities providing:
+- Development server with hot reload
+- RPC call logging and debugging
+- Performance monitoring
+
+## Development
+
+```bash
+# Install dependencies
+bun install
+
+# Build all packages in development mode
+bun run dev:packages
+
+# Run type checking across all packages
+bun run type-check:all
+
+# Clean all build artifacts
+bun run clean
+```
+
+## Supported Types
+
+### Phase 1 (Current)
+- Primitives: `string`, `number`, `boolean`, `null`
+- `Date` objects
+- Arrays and plain objects
+- Nested combinations of the above
+
+### Future Phases
+- Collections: `Map`, `Set`
+- Advanced types: `BigInt`, `RegExp`
+- Custom serializable classes
 
 ## Development Features
 
