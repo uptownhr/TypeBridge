@@ -1,8 +1,8 @@
 # TypeBridge
 
-**The ultimate TypeScript-first RPC framework that makes remote calls feel local.**
+A compile-time RPC system for TypeScript that allows seamless function calls between client and server code with full type safety.
 
-TypeBridge eliminates the gap between client and server by letting you import and call server functions as if they were local - with complete type safety, zero boilerplate, and magical developer experience. Write `import { getUser } from '../../server/api/users'` in your React component and watch TypeBridge transform it into optimized RPC calls at build time, preserving every type, parameter, and return value along the way.
+TypeBridge transforms server imports into RPC calls at build time, eliminating boilerplate while preserving complete TypeScript type information across the client-server boundary.
 
 ## Features
 
