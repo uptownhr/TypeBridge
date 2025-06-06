@@ -1,0 +1,22 @@
+{
+  "name": "seamless-rpc",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build:all": "bun run --filter='packages/*' build",
+    "dev:packages": "bun run --filter='packages/*' dev",
+    "type-check:all": "bun run --filter='*' type-check",
+    "test:all": "bun test",
+    "dev": "cd apps/sample-app && bun run dev",
+    "clean": "rm -rf packages/*/dist apps/*/dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/bun": "latest"
+  }
+}

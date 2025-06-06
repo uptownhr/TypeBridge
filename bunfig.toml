@@ -1,0 +1,6 @@
+[install]
+exact = true
+workspaces = true
+
+[build]
+target = "node"

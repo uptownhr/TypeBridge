@@ -1,0 +1,24 @@
+{
+  "name": "sample-app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run build/dev-server.ts",
+    "build": "bun build ./src/client/index.tsx --outdir ./dist/client --target browser",
+    "build:server": "bun build ./src/server/index.ts --outdir ./dist/server --target node",
+    "start": "bun run ./dist/server/index.js",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@seamless-rpc/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@seamless-rpc/compiler": "workspace:*",
+    "@seamless-rpc/dev-tools": "workspace:*",
+    "typescript": "^5.0.0"
+  }
+}

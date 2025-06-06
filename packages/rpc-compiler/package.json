@@ -1,0 +1,24 @@
+{
+  "name": "@seamless-rpc/compiler",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./plugin": "./dist/plugin.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --target node",
+    "dev": "bun build ./src/index.ts --outdir ./dist --target node --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "bun": "*"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

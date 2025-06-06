@@ -1,0 +1,10 @@
+[build]
+plugins = ["./build/rpc-config.ts"]
+target = "browser"
+
+[dev]
+hot = true
+port = 3000
+
+[install]
+exact = true

@@ -1,0 +1,22 @@
+{
+  "name": "@seamless-rpc/dev-tools",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./dev-server": "./dist/dev-server.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --target node --external @seamless-rpc/core",
+    "dev": "bun build ./src/index.ts --outdir ./dist --target node --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@seamless-rpc/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/bun": "latest"
+  }
+}
