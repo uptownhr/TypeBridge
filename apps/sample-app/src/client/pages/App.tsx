@@ -35,7 +35,7 @@ export function App() {
         <div>
           <div style={{ marginBottom: '20px' }}>
             <label>
-              View User Profile: 
+              View User Profile:
               <select 
                 value={selectedUserId} 
                 onChange={(e) => setSelectedUserId(e.target.value)}

@@ -83,7 +83,7 @@ export function PostList() {
       <div style={{ marginBottom: '20px' }}>
         <h2>Posts ({posts.length})</h2>
         <button onClick={handleCreatePost} disabled={users.length === 0}>
-          Create Random Post
+          Create Random Post - Vite HMR!
         </button>
       </div>
       
@@ -92,7 +92,7 @@ export function PostList() {
           <h3>{selectedPost.post.title}</h3>
           <p><strong>Author:</strong> {selectedPost.author.name} ({selectedPost.author.email})</p>
           <p><strong>Created:</strong> {new Date(selectedPost.post.createdAt).toLocaleString()}</p>
-          <p>{selectedPost.post.content}</p>
+          <p>{selectedPost.post.content} xfxfffggg</p>
           <button onClick={() => setSelectedPost(null)}>Close</button>
         </div>
       )}

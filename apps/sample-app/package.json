@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "bun run build/dev-server.ts",
-    "build": "bun build ./src/client/index.tsx --outdir ./dist/client --target browser",
+    "dev": "concurrently \"bun run backend\" \"bun run frontend\"",
+    "backend": "bun run build/backend-server.ts",
+    "frontend": "vite --port 3000",
+    "build": "vite build",
     "build:server": "bun build ./src/server/index.ts --outdir ./dist/server --target node",
     "start": "bun run ./dist/server/index.js",
     "type-check": "tsc --noEmit"
@@ -15,10 +17,13 @@
     "@seamless-rpc/core": "workspace:*"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
     "@seamless-rpc/compiler": "workspace:*",
     "@seamless-rpc/dev-tools": "workspace:*",
-    "typescript": "^5.0.0"
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "4.5.1",
+    "concurrently": "9.1.2",
+    "typescript": "^5.0.0",
+    "vite": "6.3.5"
   }
 }
