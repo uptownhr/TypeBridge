@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"bun run backend\" \"bun run frontend\"",
-    "backend": "bun run build/backend-server.ts",
+    "backend": "bun run build/dev-backend.ts",
     "frontend": "vite --port 3000",
     "build": "vite build",
     "build:server": "bun build ./src/server/index.ts --outdir ./dist/server --target node",
