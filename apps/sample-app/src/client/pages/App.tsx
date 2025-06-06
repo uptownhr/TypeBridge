@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { UserList } from '../components/UserList';
 import { PostList } from '../components/PostList';
+import { FormDemo } from '../components/FormDemo';
 
 export function App() {
-  const [activeTab, setActiveTab] = useState<'users' | 'posts'>('users');
+  const [activeTab, setActiveTab] = useState<'users' | 'posts' | 'forms'>('users');
   
   return (
     <div className="container">
@@ -23,16 +24,27 @@ export function App() {
         <button 
           onClick={() => setActiveTab('posts')}
           style={{ 
-            backgroundColor: activeTab === 'posts' ? '#1976d2' : '#ccc'
+            backgroundColor: activeTab === 'posts' ? '#1976d2' : '#ccc',
+            marginRight: '10px'
           }}
         >
           Posts
+        </button>
+        <button 
+          onClick={() => setActiveTab('forms')}
+          style={{ 
+            backgroundColor: activeTab === 'forms' ? '#1976d2' : '#ccc'
+          }}
+        >
+          Form Demo
         </button>
       </div>
       
       {activeTab === 'users' && <UserList />}
       
       {activeTab === 'posts' && <PostList />}
+      
+      {activeTab === 'forms' && <FormDemo />}
       
       <div style={{ marginTop: '40px', padding: '20px', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
         <h3>How it works:</h3>

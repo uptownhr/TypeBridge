@@ -98,23 +98,20 @@ export async function createUser(userData: CreateUserData): Promise<User> {
   return await db.createUser(userData);
 }
 
-// Client: Use anywhere, anytime
+// Client: Clean form with automatic data conversion
+import { Form } from '@seamless-rpc/core';
 import { createUser } from '../../server/api/users';
 
-// In forms
-const handleSubmit = async (e) => {
-  const user = await createUser({ name, email });
-};
+<Form action={createUser}>
+  <input name="name" />
+  <input name="email" />
+  <button type="submit">Create</button>
+</Form>
 
-// In event handlers
+// Also works in event handlers, useEffect, anywhere
 const handleClick = async () => {
   const user = await createUser(userData);
 };
-
-// In useEffect
-useEffect(() => {
-  createUser(defaultData);
-}, []);
 ```
 
 ## Key Advantages
@@ -125,11 +122,13 @@ useEffect(() => {
 - **📦 Minimal Overhead**: No runtime libraries, just optimized RPC calls
 - **🔧 Any Framework**: Works with React, Vue, Svelte, vanilla JS
 - **🎨 True Imports**: Real ES6 imports that your IDE understands completely
+- **📝 Smart Forms**: Automatic FormData to object conversion with full type safety
 
 ## Features
 
 - **Zero Ceremony**: Import server functions and call them like local functions
 - **Full Type Safety**: Complete TypeScript support with no type loss
+- **Smart Forms**: TypeBridge `<Form>` component with automatic data conversion
 - **Fast Builds**: Sub-second rebuild times with Bun
 - **Great DX**: Clear errors, hot reload, debugging support
 - **Production Ready**: Optimized bundles, robust error handling
