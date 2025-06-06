@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getUserProfile, createUser } from '../../generated/client-stubs.js';
+import { getUserProfile, createUser } from '../../server/api/users';
 import { User } from '../../shared/types/user.js';
+
+// Force rebuild 3
 
 export function UserProfile({ userId }: { userId: string }) {
   const [profileData, setProfileData] = useState<{

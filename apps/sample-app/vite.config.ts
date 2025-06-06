@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
+import { rpcPlugin } from './build/vite-rpc-plugin.js';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), rpcPlugin()],
   root: 'src/client',
   build: {
     outDir: '../../dist/client',
@@ -19,5 +21,11 @@ export default defineConfig({
   },
   define: {
     'process.env.NODE_ENV': JSON.stringify('development'),
+  },
+  resolve: {
+    alias: {
+      // Allow client to resolve server types for TypeScript
+      '@server': path.resolve(__dirname, 'src/server'),
+    }
   }
 });

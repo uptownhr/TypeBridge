@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getAllPosts, createPost, getPostWithAuthor, getAllUsers } from '../../generated/client-stubs.js';
+import { getAllPosts, createPost, getPostWithAuthor } from '../../server/api/posts';
+import { getAllUsers } from '../../server/api/users';
 import { Post } from '../../shared/types/post.js';
 import { User } from '../../shared/types/user.js';
 
