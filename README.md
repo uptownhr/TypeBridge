@@ -88,6 +88,19 @@ TypeBridge/
 │   └── rpc-dev-tools/      # Development utilities
 ├── apps/
 │   └── sample-app/         # Example React application
+│       ├── src/
+│       │   ├── client/     # React frontend code
+│       │   │   ├── components/
+│       │   │   ├── pages/
+│       │   │   └── index.tsx
+│       │   ├── server/     # Backend API functions
+│       │   │   └── api/
+│       │   │       ├── users.ts
+│       │   │       └── posts.ts
+│       │   └── shared/     # Shared types & utilities
+│       │       └── types/
+│       ├── build/          # Development server scripts
+│       └── vite.config.ts  # Vite configuration
 ├── package.json            # Root package.json for monorepo
 └── README.md
 ```
@@ -164,7 +177,8 @@ try {
 
 ## Development Features
 
-- **Hot Reload**: Server function changes automatically trigger client rebuilds
+- **Client HMR**: React components update instantly with Vite Fast Refresh
+- **Server Hot Reload**: Server function changes automatically restart backend
 - **Detailed Errors**: Full server stack traces in development
 - **Call Logging**: All RPC calls are logged with timing information
 - **Type Safety**: Compile-time validation of function signatures
