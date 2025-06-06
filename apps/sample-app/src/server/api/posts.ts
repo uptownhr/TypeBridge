@@ -32,7 +32,7 @@ export async function createPost(postData: CreatePostData): Promise<Post> {
   if (!author) {
     throw new Error('Author not found');
   }
-  
+
   return await db.createPost(postData);
 }
 

@@ -1,6 +1,8 @@
-# Seamless RPC
+# TypeBridge
 
-A compile-time RPC system for TypeScript that allows seamless function calls between client and server code with full type safety.
+**The ultimate TypeScript-first RPC framework that makes remote calls feel local.**
+
+TypeBridge eliminates the gap between client and server by letting you import and call server functions as if they were local - with complete type safety, zero boilerplate, and magical developer experience. Write `import { getUser } from '../../server/api/users'` in your React component and watch TypeBridge transform it into optimized RPC calls at build time, preserving every type, parameter, and return value along the way.
 
 ## Features
 
@@ -73,7 +75,7 @@ export function UserProfile({ userId }: { userId: string }) {
 ## Project Structure
 
 ```
-seamless-rpc/
+TypeBridge/
 ├── packages/
 │   ├── rpc-core/           # Core RPC runtime & types
 │   ├── rpc-compiler/       # Build-time transformation
