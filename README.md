@@ -14,7 +14,7 @@ TypeBridge transforms server imports into RPC calls at build time, eliminating b
 
 ### vs tRPC
 
-**tRPC Server Definition:**
+**❌ tRPC Server Definition:**
 ```typescript
 // tRPC requires procedures and routers
 const userRouter = t.router({
@@ -36,14 +36,14 @@ export const appRouter = t.router({
 });
 ```
 
-**tRPC Client Usage:**
+**❌ tRPC Client Usage:**
 ```typescript
 // Complex API with hooks and query keys
 const user = trpc.user.getUser.useQuery('user-123');
 const createUserMutation = trpc.user.createUser.useMutation();
 ```
 
-**TypeBridge Server Definition:**
+**✅ TypeBridge Server Definition:**
 ```typescript
 // Just regular TypeScript functions
 export async function getUser(id: string): Promise<User> {
@@ -55,7 +55,7 @@ export async function createUser(userData: CreateUserData): Promise<User> {
 }
 ```
 
-**TypeBridge Client Usage:**
+**✅ TypeBridge Client Usage:**
 ```typescript
 // Direct imports and function calls
 import { getUser, createUser } from '../../server/api/users';
@@ -66,7 +66,7 @@ const newUser = await createUser({ name: 'John', email: 'john@example.com' });
 
 ### vs React Server Actions
 
-**React Server Actions Oddities:**
+**❌ React Server Actions Oddities:**
 
 ```typescript
 // Server Action requires 'use server' directive
@@ -91,7 +91,7 @@ async function createUser(formData: FormData) {
 const boundAction = createUser.bind(null, userData);
 ```
 
-**TypeBridge Approach:**
+**✅ TypeBridge Approach:**
 ```typescript
 // Server: Regular function
 export async function createUser(userData: CreateUserData): Promise<User> {
